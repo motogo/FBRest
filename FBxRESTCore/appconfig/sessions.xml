@@ -1,0 +1,26 @@
+<Sessions>
+ <Session>
+  <Token>ffm1health</Token>
+  <Value>SYSDBA:masterkey@localhost:3050/D:/Data/LAR/HEALTHDATAS304.FDB</Value>
+  <Permission>9</Permission>
+  <Start>2020-12-15T23:02:12.8305516+01:00</Start>
+  <Duration>31536000</Duration>
+  <Valid>true</Valid>
+ </Session>
+ <Session>
+  <Token>license</Token>
+  <Value>SYSDBA:masterkey@localhost:3050/D:/Data/SELicense/SELICENSE30.FDB</Value>
+  <Permission>9</Permission>
+  <Start>2020-12-15T23:02:12.8305516+01:00</Start>
+  <Duration>10000000</Duration>
+  <Valid>true</Valid>
+ </Session>
+ <Session>
+  <Token>bln11health</Token>
+  <Value>SYSDBA:masterkey@localhost:3050/D:/Data/LAR/HEALTHDATAS304.FDB</Value>
+  <Permission>9</Permission>
+  <Start>2020-12-15T23:02:12.8305516+01:00</Start>
+  <Duration>100000</Duration>
+  <Valid>true</Valid>
+ </Session>
+</Sessions>

@@ -1,0 +1,11 @@
+Frankfurt
+http://87.139.153.189:4488/ffm1health/rest/get/VMEAS2?fields=(name,tmeastype__name,tmeasval__mjd,tmeasval__value)&filter=(tmeasval__stamp >=  CURRENT_DATE and (description like '%src_cs0101%') and (tmeastype__name like 'electron%'))
+http://87.139.153.189:4488/ffm1health/rest/get/VMEAS2?fields=(name,tmeastype__name,tmeasval__mjd,tmeasval__value)&filter=(tmeasval__stamp >=  CURRENT_DATE and (description like '%src_cs0102%') and (tmeastype__name like 'electron%'))
+http://87.139.153.189:4488/ffm1health/rest/get/VMEAS2?fields=(name,tmeastype__name,tmeasval__mjd,tmeasval__value)&filter=(tmeasval__stamp >=  CURRENT_DATE and (description like '%src_cs0101%') and (tmeastype__name = 'temperature'))
+http://87.139.153.189:4488/ffm1health/rest/get/VMEAS2?fields=(name,tmeastype__name,tmeasval__mjd,tmeasval__value)&filter=(tmeasval__stamp >=  CURRENT_DATE and description like '%src_cs0102%' and tmeastype__name = 'temperature')
+
+Berlin
+http://87.139.153.189:4488/bln11health/rest/get/VMEAS2?fields=(name,tmeastype__name,tmeasval__mjd,tmeasval__value)&filter=(tmeasval__stamp >=  CURRENT_DATE and (description like '%src_0201%') and (tmeastype__name = 'temperature'))
+http://87.139.153.189:4488/bln11health/rest/get/VMEAS2?fields=(name,tmeastype__name,tmeasval__mjd,tmeasval__value)&filter=(tmeasval__stamp >=  CURRENT_DATE and description like '%src_0202%' and tmeastype__name = 'temperature')
+http://87.139.153.189:4488/bln11health/rest/get/VMEAS2?fields=(name,tmeastype__name,tmeasval__mjd,tmeasval__value)&filter=(tmeasval__stamp >=  CURRENT_DATE and (description like '%src_0201%') and (tmeastype__name like 'electron%'))
+http://87.139.153.189:4488/bln11health/rest/get/VMEAS2?fields=(name,tmeastype__name,tmeasval__mjd,tmeasval__value)&filter=(tmeasval__stamp >=  CURRENT_DATE and (description like '%src_0202%') and (tmeastype__name like 'electron%'))

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>{{.Appname}}</title>
+   </head>
+
+   <body>
+    <font face="Monospace" size="5">
+    <h1 style="color:red;">{{ .Appname}} {{ .Version}}</h1>
+    <h1>{{ .Copyright}}</h1>
+    <hr>
+        <a href="./help/design">REST Design</a>
+        <h2 style="color:blue;">Session Token mit Web Url holen</h2>
+        <p></p>
+        <i>Ein Session Token gilt für eine bestimmte Zeitspanne und muss nach Ablauf dieser erneuert werden.</i><br>
+        <i>Dem angegebenen User wird über das System eine Berechtigung für das DBSchema zugewiesen.</i><br>
+        <i>Das Schema (Database,Location,Port,Zeitspanne...) selbst ist in der Konfiguration des REST Servers definiert.</i><br>
+        <p></p>        
+        <li> http://localhost:4488/api/token/get?DBScheme=health_bln11&User=superuser&Password=su</li>
+        <li> http://localhost:4488/api/token/get?fjson={"dbscheme":"health_bln11","user":"superuser","password":"su"}</li>        
+        <p></p>
+        <hr>
+        <h2 style="color:blue;"> Session Token mit curl holen</h2>
+        <p></p>
+        <i>In WINDOWS müssen die " Zeichen in den Parametern als \" maskiert werden</i><br>
+        <p></p>
+        <li>curl -X GET -H "Content-Type: application/json" -d "{\"dbscheme\":\"health_bln11\",\"password\":\"su\",\"user\":\"superuser\"}" http://localhost:4488/api/token/get</li>
+        
+        <p><b>Beispiel Returnvalue: {"Status":200,"Message":"Created UUID, permissions:All, duration:30m0s","Data":"{{.Key}}"}  }</b></p>
+        <p></p>
+        <hr>
+        <h2 style="color:blue;">SQL-Select Anweisungen</h2>
+        <p></p>
+        <li>http://localhost:4488/{{.Key}}/db/sql/get?cmd=SELECT * FROM TSTANDORT</li>
+        <li>http://localhost:4488/{{.Key}}/db/sql/get?cmd=SELECT * FROM TSTANDORT&info=Info zum command</li>        
+        <li>http://localhost:4488/{{.Key}}/db/sql/get?fjson="{"cmd":"SELECT * FROM TSTANDORT"}"</li>
+        <p></p>
+        <li>curl -X GET -H "Content-Type:application/json" -d "{\"cmd\":\"SELECT * FROM TSTANDORT\"}" http://localhost:4488/-MODIOAq67npCb0gATOT/db/sql/get</li>
+        <li>curl -X GET -H "Content-Type:application/json" -d "{\"cmd\":\"SELECT * FROM TSTANDORT WHERE GUELTIG .gt. 0\"}" http://localhost:4488/-MODMhyTBrPTu8xPSJnQ/db/sql/get</li>
+        <p></p>
+        <i>Der entsprechende SQL Befehl kann 'maskiert' werden indem das Maskierungszeichen der SQL Anweisung vorangestellt wird.</i>
+        <p></p>
+        <p>Beispiel:  http://localhost:4488/{{.Key}}/db/sql/get?q=cmd:'SELECT'*'FROM'TSTANDORT</p>
+        <p></p>
+        <hr>
+        <h2 style="color:blue;">REST-Select Anweisungen</h2>
+        <p>Mögliche Parameter</p>
+        <p></p>
+        <li>fields -> fields=(id,bez) , fields=(*)</li>
+        <li>order  -> order=(id asc,bez desc)</li>
+        <li>group  -> group=(id,bez)</li>        
+        <li>filter -> filter=(BEZ like 'T%')</li>
+        <li>limit  -> limit=(10) , limit=(10,100)</li>
+        <p></p>       
+        <li>http://localhost:4488/{{.Key}}/rest/get/TSTANDORT?fields=(id,bez)&order=(bez asc, id desc)&filter=(BEZ like 'T%')&group=(id,bez)</li> 
+        <li>http://localhost:4488/{{.Key}}/rest/get/TSTANDORT?fjson={"table": "TSTANDORT","fields": ["ID","BEZ","GUELTIG"],"filter":"ID=1 AND BEZ like 'x%'","order": ["BEZ ASC","ID DESC"],"groupby": ["ID","BEZ"],"first": 0}</li>
+        <li>http://localhost:4488/-MOLbTWs50CjHkAjxEPO/rest/get/TSTANDORT/BEZ/'Nürnberg'?order=(bez asc, id desc)&filter=(BEZ like 'T%')&group=(id,bez)</li>
+        <li>curl -X GET -H "Content-Type: application/json" -d "{\"table\": \"TSTANDORT\",\"fields\": [\"ID\",\"BEZ\",\"GUELTIG\"],\"filter\":\"GUELTIG=1 AND BEZ like 'N%'\",\"order\": [\"BEZ ASC\",\"ID DESC\"],\"groupby\": [\"ID\",\"BEZ\"],\"first\": 0}" -s http://localhost:4488/-MOBtT5CMb_oSWI61hRS/rest/get/TSTANDORT</li>
+        <p></p>  
+        <hr>
+        <h2 style="color:blue;">REST-Update Anweisungen</h2>
+        <p></p>
+        <li>http://localhost:4488/{{.Key}}/rest/put/TSTANDORT?payload=(bez='Nürnberg 2')&filter=(bez='Nürnberg')</li>
+        <li>http://localhost:4488/{{.Key}}/rest/put/TSTANDORT?fjson={"payload":["bez='Nürnberg'","gueltig=1"], "filter": "gueltig > 0 AND bez like 'N%'"}</li>
+        <li>curl -X GET -H "Content-Type: application/json" -d "{\"payload\":[\"bez='Nürnberg'\",\"gueltig=1\"], \"filter\": \"gueltig > 0 AND bez like 'N%'\"}": 0}" http://localhost:4488/-MOBtT5CMb_oSWI61hRS/rest/get/TSTANDORT</li>
+        <p></p>
+        <hr>
+        <h2 style="color:blue;">CURL Besonderheiten</h2>
+        <p></p>
+        <i>Bei Verwendung von curl wird der payload mit -d im body übertragen.</i><br>
+        <i>Bei Problemen mit Arithmetikzeichen z.b. im Filter (GUELTIG > 0) kann anstatt von > auch .gt. verwendet werden, also: (GUELTIG .gt. 0).</i><br>
+        <i>Weitere Ersatz-Slices sind < .lt. , >= .gte. , <= .lte.</i><br>
+        <i>Das Zeichen " im payload muss in Windows als \" geschrieben werden.</i>
+        <hr>  
+      </font>                            
+   </body>
+
+</html>

@@ -1,0 +1,26 @@
+<Permissions>
+ <Permission>
+  <userkey>superuser</userkey>
+  <userpassword>su</userpassword>
+  <dbscheme>license</dbscheme>
+  <type>9</type>
+ </Permission>
+ <Permission>
+  <userkey>superuser2</userkey>
+  <userpassword>su2</userpassword>
+  <dbscheme>health_bln11</dbscheme>
+  <type>9</type>
+ </Permission>
+ <Permission>
+  <userkey>4567</userkey>
+  <userpassword></userpassword>
+  <dbscheme>health_ffm1</dbscheme>
+  <type>0</type>
+ </Permission>
+ <Permission>
+  <userkey>789</userkey>
+  <userpassword></userpassword>
+  <dbscheme></dbscheme>
+  <type>1</type>
+ </Permission>
+</Permissions>

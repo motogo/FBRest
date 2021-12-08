@@ -1,0 +1,29 @@
+<DBSchemes>
+    <DatabaseAttributes>
+    <Name>health bln11</Name>
+    <Key>health_bln11</Key>
+    <Location>192.168.12.99</Location>
+    <Database>D:/Data/LAR/HEALTHDATAS304.FDB</Database>
+    <Port>3050</Port>
+    <Password>masterkey</Password>
+    <User>SYSDBA</User>
+    </DatabaseAttributes>
+    <DatabaseAttributes>
+    <Name>health ffm1</Name>
+    <Key>health_ffm1</Key>
+    <Location>192.168.11.98</Location>
+    <Database>D:/Data/LAR/HEALTHDATAS304.FDB</Database>
+    <Port>3050</Port>
+    <Password>masterkey</Password>
+    <User>SYSDBA</User>
+    </DatabaseAttributes>
+	<DatabaseAttributes>
+    <Name>license</Name>
+    <Key>license</Key>
+    <Location>localhost</Location>
+    <Database>D:/Data/SELicense/SELICENSE30.FDB</Database>
+    <Port>3050</Port>
+    <Password>masterkey</Password>
+    <User>SYSDBA</User>
+    </DatabaseAttributes>
+</DBSchemes>
